@@ -1,16 +1,24 @@
+import { isSidebarOpenAtom } from './atoms/is-sidebar-open'
 import * as Collapsible from '@radix-ui/react-collapsible'
+import { useEffect } from 'react'
 import { useAtom } from 'jotai'
 import { isSidebarOpenAtom } from './atoms/is-sidebar-open'
 import { Editor } from './components/Editor'
 
-import { Header } from './components/Header'
 import { Sidebar } from './components/Sidebar'
-
+import { Header } from './components/Header'
 import { ToC } from './components/ToC'
+
 import './styles/global.css'
+
+const { api } = window
 
 export function App() {
   const [, setIsSidebarOpen] = useAtom(isSidebarOpenAtom)
+
+  useEffect(() => {
+    api.getPages().then(console.log)
+  }, [])
 
   return (
     <Collapsible.Root
