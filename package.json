@@ -18,6 +18,8 @@
   "dependencies": {
     "@electron-toolkit/preload": "^1.0.2",
     "@electron-toolkit/utils": "^1.0.2",
+    "@radix-ui/react-collapsible": "^1.0.1",
+    "@radix-ui/react-dialog": "^1.0.2",
     "clsx": "^1.2.1",
     "jotai": "^1.9.1",
     "phosphor-react": "^1.4.1"

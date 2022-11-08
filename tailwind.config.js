@@ -24,6 +24,26 @@ module.exports = {
           900: '#17141f',
         },
       },
+
+      transitionProperty: {
+        spacing: 'margin, padding',
+      },
+
+      keyframes: {
+        slideIn: {
+          from: { width: 0 },
+          to: { width: 'var(--radix-collapsible-content-width)' },
+        },
+        slideOut: {
+          from: { width: 'var(--radix-collapsible-content-width)' },
+          to: { width: 0 },
+        },
+      },
+
+      animation: {
+        slideIn: 'slideIn 0.25s',
+        slideOut: 'slideOut 0.25s',
+      },
     },
   },
   plugins: [require('tailwind-scrollbar')],

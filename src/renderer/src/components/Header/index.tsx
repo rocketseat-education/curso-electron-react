@@ -1,12 +1,13 @@
 import clsx from 'clsx'
 import { Code, Sticker, Link, Gear, CaretDoubleRight } from 'phosphor-react'
 import { useAtom } from 'jotai'
+import * as Collapsible from '@radix-ui/react-collapsible'
 import * as Breadcrumbs from './Breadcrumbs'
 
 import { isSidebarOpenAtom } from '@renderer/atoms/is-sidebar-open'
 
 export function Header() {
-  const [isSidebarOpen, setIsSidebarOpen] = useAtom(isSidebarOpenAtom)
+  const [isSidebarOpen] = useAtom(isSidebarOpenAtom)
 
   const isMacOS = process.platform === 'darwin'
 
@@ -14,21 +15,23 @@ export function Header() {
     <div
       id="header"
       className={clsx(
-        'border-b border-rotion-600 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-500',
+        'border-b border-rotion-600 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-250',
         {
           'pl-24': !isSidebarOpen && isMacOS,
+          'w-screen': !isSidebarOpen,
+          'w-[calc(100vw-var(--radix-collapsible-content-width))]':
+            isSidebarOpen,
         },
       )}
     >
-      <button
-        onClick={() => setIsSidebarOpen(true)}
+      <Collapsible.Trigger
         className={clsx('h-5 w-5 text-rotion-200 hover:text-rotion-50', {
           hidden: isSidebarOpen,
           block: !isSidebarOpen,
         })}
       >
         <CaretDoubleRight className="h-4 w-4" />
-      </button>
+      </Collapsible.Trigger>
 
       <Breadcrumbs.Root>
         <Breadcrumbs.Item>
