@@ -47,8 +47,8 @@ module.exports = {
       },
 
       animation: {
-        slideIn: 'slideIn 0.25s forwards',
-        slideOut: 'slideOut 0.25s forwards',
+        slideIn: 'slideIn 0.25s',
+        slideOut: 'slideOut 0.25s',
       },
     },
   },
