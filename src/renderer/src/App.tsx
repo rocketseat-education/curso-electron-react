@@ -25,9 +25,9 @@ export function App() {
 
           <section
             id="content"
-            className="flex-1 py-8 px-10 flex gap-8 overflow-y-auto scrollbar-thin scrollbar-thumb-rotion-600 scrollbar-track-rotion-800"
+            className="flex-1 py-12 px-10 flex gap-8 overflow-y-auto scrollbar-thin scrollbar-thumb-rotion-600 scrollbar-track-rotion-800"
           >
-            <aside className="hidden lg:block">
+            <aside className="hidden lg:block sticky top-0">
               <strong className="text-rotion-300 uppercase text-xs font-semibold">
                 TABLE OF CONTENTS
               </strong>
@@ -62,7 +62,7 @@ export function App() {
               </ToC.Root>
             </aside>
 
-            <main className="flex-1 leading-relaxed flex flex-col items-center gap-6">
+            <main className="flex-1 leading-relaxed flex flex-col items-center">
               <Editor />
             </main>
           </section>
