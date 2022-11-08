@@ -1,38 +1,22 @@
-import { Gear, Link, Sticker } from 'phosphor-react'
-import { Breadcrumbs } from './components/Breadcrumbs'
+import { Header } from './components/Header'
 import { Sidebar } from './components/Sidebar'
+
 import { ToC } from './components/ToC'
 import './styles/global.css'
 
 export function App() {
   return (
-    <div className="h-screen w-screen bg-rotion-800 text-gray-100 flex">
+    <div className="h-screen w-screen bg-rotion-900 text-gray-100 flex">
       <Sidebar />
       <div className="flex-1 flex flex-col max-h-screen">
-        <div
-          id="header"
-          className="border-b border-rotion-700 py-3 px-6 flex justify-between items-center"
-        >
-          <Breadcrumbs />
-          <div className="inline-flex gap-3">
-            <button className="text-gray-200 hover:text-gray-50">
-              <Sticker className="h-5 w-5" weight="bold" />
-            </button>
-            <button className="text-gray-200 hover:text-gray-50">
-              <Link className="h-5 w-5" weight="bold" />
-            </button>
-            <button className="text-gray-200 hover:text-gray-50">
-              <Gear className="h-5 w-5" weight="bold" />
-            </button>
-          </div>
-        </div>
+        <Header />
 
         <section
           id="content"
-          className="flex-1 py-8 px-10 flex gap-8 overflow-y-auto scrollbar-thin scrollbar-thumb-rotion-700 scrollbar-track-rotion-900"
+          className="flex-1 py-8 px-10 flex gap-8 overflow-y-auto scrollbar-thin scrollbar-thumb-rotion-600 scrollbar-track-rotion-800"
         >
-          <aside>
-            <strong className="text-gray-400 uppercase text-xs font-semibold">
+          <aside className="hidden lg:block">
+            <strong className="text-rotion-300 uppercase text-xs font-semibold">
               TABLE OF CONTENTS
             </strong>
 
@@ -67,7 +51,7 @@ export function App() {
           </aside>
 
           <main className="flex-1 leading-relaxed flex flex-col gap-6">
-            <h1 className="font-bold text-3xl">Github Actions</h1>
+            <h1 className="font-bold text-3xl">Arquitetura back-end</h1>
             <div className="bg-cyan-300/10 border-l-8 border-cyan-300 py-4 px-6 rounded">
               Esse documento tem como objetivo apresentar detalhadamente a
               estrutura utilizada na construção das aplicações back-end na
@@ -76,7 +60,7 @@ export function App() {
             </div>
 
             <div className="flex flex-col gap-4">
-              <h2 className="font-semibold text-2xl">Arquitetura back-end</h2>
+              <h2 className="font-semibold text-2xl">Geral</h2>
               <p>
                 As aplicações na Rocketseat são construídas em serviços
                 desacoplados, especializados, independentes e que se comunicam,

@@ -5,7 +5,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    minWidth: 760,
+    // minWidth: 760,
     minHeight: 400,
     width: 1120,
     height: 700,

@@ -2,6 +2,10 @@
 @tailwind utilities;
 @tailwind components;
 
+html {
+  overflow: hidden;
+}
+
 #sidebar, #header {
   -webkit-app-region: drag;
 }
