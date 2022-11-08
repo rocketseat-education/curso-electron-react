@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/renderer/src/**/*.tsx'],
@@ -29,6 +31,10 @@ module.exports = {
         spacing: 'margin, padding',
       },
 
+      fontFamily: {
+        sans: 'Inter, sans-serif',
+      },
+
       keyframes: {
         slideIn: {
           from: { width: 0 },
@@ -41,10 +47,24 @@ module.exports = {
       },
 
       animation: {
-        slideIn: 'slideIn 0.25s',
-        slideOut: 'slideOut 0.25s',
+        slideIn: 'slideIn 0.25s forwards',
+        slideOut: 'slideOut 0.25s forwards',
       },
     },
   },
-  plugins: [require('tailwind-scrollbar')],
+  plugins: [
+    require('tailwind-scrollbar'),
+    require('@tailwindcss/typography'),
+
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        '.region-drag': {
+          '-webkit-app-region': 'drag',
+        },
+        '.region-no-drag': {
+          '-webkit-app-region': 'no-drag',
+        },
+      })
+    }),
+  ],
 }

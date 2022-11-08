@@ -13,14 +13,12 @@ export function Header() {
 
   return (
     <div
-      id="header"
       className={clsx(
-        'border-b border-rotion-600 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-250',
+        'border-b border-rotion-600 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-250 region-drag',
         {
           'pl-24': !isSidebarOpen && isMacOS,
           'w-screen': !isSidebarOpen,
-          'w-[calc(100vw-var(--radix-collapsible-content-width))]':
-            isSidebarOpen,
+          'w-[calc(100vw-240px)]': isSidebarOpen,
         },
       )}
     >
@@ -45,7 +43,8 @@ export function Header() {
         <Breadcrumbs.Separator />
         <Breadcrumbs.Item isActive>Arquitetura back-end</Breadcrumbs.Item>
       </Breadcrumbs.Root>
-      <div className="inline-flex gap-3">
+
+      <div className="inline-flex gap-3 region-no-drag">
         <button className="text-rotion-100 hover:text-rotion-50">
           <Sticker className="h-5 w-5" weight="bold" />
         </button>
