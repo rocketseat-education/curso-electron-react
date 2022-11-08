@@ -1,8 +1,14 @@
-import { contextBridge } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { contextBridge, ipcRenderer } from 'electron'
+
+import { IPC } from '@shared/constants'
 
 // Custom APIs for renderer
-const api = {}
+const api = {
+  async getPages() {
+    return ipcRenderer.invoke(IPC.PAGES.GET_ALL)
+  },
+}
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
