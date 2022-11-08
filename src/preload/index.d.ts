@@ -1,8 +1,11 @@
 import { ElectronAPI } from '@electron-toolkit/preload'
 
 declare global {
-  interface Window {
+  export interface Window {
     electron: ElectronAPI
-    api: unknown
+
+    api: {
+      getPages(): Promise<{ name: string; path: string }[]>
+    }
   }
 }

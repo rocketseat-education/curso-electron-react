@@ -1,6 +1,8 @@
-import { app, shell, BrowserWindow } from 'electron'
-import * as path from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
+import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import * as path from 'path'
+
+import { IPC } from '@shared/constants'
 
 function createWindow(): void {
   // Create the browser window.
@@ -30,6 +32,10 @@ function createWindow(): void {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+
+    if (is.dev) {
+      mainWindow.webContents.openDevTools({ mode: 'detach' })
+    }
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -44,6 +50,14 @@ function createWindow(): void {
   } else {
     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))
   }
+
+  ipcMain.handle(IPC.PAGES.GET_ALL, () => {
+    return [
+      { name: 'Home', path: '/' },
+      { name: 'About', path: '/about' },
+      { name: 'Docs', path: '/docs' },
+    ]
+  })
 }
 
 // This method will be called when Electron has finished
