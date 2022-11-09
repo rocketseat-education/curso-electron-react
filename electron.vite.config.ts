@@ -18,6 +18,8 @@ export default defineConfig({
         ...shareableAliases.shared,
       },
     },
+
+    publicDir: resolve('resources'),
   },
 
   preload: {
@@ -44,6 +46,8 @@ export default defineConfig({
     },
 
     plugins: [react()],
+
+    publicDir: resolve('resources'),
 
     build: {
       rollupOptions: {
