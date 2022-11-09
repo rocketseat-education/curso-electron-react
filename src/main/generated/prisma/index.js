@@ -129,7 +129,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/diegofernandes/www/ignite/bonus/electron/src/main/generated/prisma",
+      "value": "/home/daltonmenezes/projetos/ajuda/curso-electron-react/src/main/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -169,7 +169,7 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
-path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
-path.join(process.cwd(), "src/main/generated/prisma/libquery_engine-darwin-arm64.dylib.node")
+path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
+path.join(process.cwd(), "src/main/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node")
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "src/main/generated/prisma/schema.prisma")

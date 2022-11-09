@@ -1,5 +1,18 @@
-import { PrismaClient } from '../generated/prisma/index'
+import * as Prisma from '../generated/prisma/index'
+import { resolve } from 'path'
 
-export const prisma = new PrismaClient({
-  log: ['query'],
-})
+let prisma: Prisma.PrismaClient = {} as Prisma.PrismaClient
+
+export async function getPrismaInstance() {
+  const { PrismaClient } = (await import(resolve(__dirname, 'index'))) as {
+    PrismaClient: typeof Prisma.PrismaClient
+  }
+
+  if (!prisma?.$connect) {
+    prisma = new PrismaClient({
+      log: ['query'],
+    })
+  }
+
+  return prisma
+}

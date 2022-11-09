@@ -11,11 +11,31 @@ const shareableAliases = {
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin()],
+    define: {
+      'process.env.DATABASE_URL': 'file:./dev.db',
+    },
 
     resolve: {
       alias: {
         ...shareableAliases.shared,
+      },
+    },
+
+    publicDir: resolve('src/main/generated/prisma'),
+
+    plugins: [externalizeDepsPlugin()],
+
+    build: {
+      rollupOptions: {
+        plugins: [
+          injectProcessEnvPlugin({
+            DATABASE_URL: 'file:dev.db',
+          }),
+        ],
+
+        output: {
+          entryFileNames: 'main.js',
+        },
       },
     },
   },

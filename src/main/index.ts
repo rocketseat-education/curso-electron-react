@@ -1,6 +1,6 @@
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
-import { prisma } from './lib/prisma'
+import { getPrismaInstance } from './lib/prisma'
 import * as path from 'node:path'
 
 import { IPC } from '@shared/constants'
@@ -49,8 +49,12 @@ function createWindow(): void {
   }
 
   ipcMain.handle(IPC.PAGES.GET_ALL, async () => {
-    return await prisma.document.findMany()
+    const prisma = await getPrismaInstance()
+
+    return prisma.document.findMany()
   })
+
+  mainWindow.setTitle('Rotion')
 }
 
 if (process.platform === 'linux') {
