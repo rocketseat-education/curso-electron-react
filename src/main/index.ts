@@ -7,6 +7,8 @@ import './shortcuts'
 
 import { IPC } from '@shared/constants'
 
+app.dock.setIcon(path.resolve(__dirname, 'icon.png'))
+
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -22,6 +24,7 @@ function createWindow(): void {
     },
     backgroundColor: '#191622',
     autoHideMenuBar: true,
+    title: 'teste',
     ...(process.platform === 'linux'
       ? {
           icon: path.join(__dirname, '../../build/icon.png'),

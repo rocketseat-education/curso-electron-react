@@ -47,8 +47,6 @@ export default defineConfig({
 
     plugins: [react()],
 
-    publicDir: resolve('resources'),
-
     build: {
       rollupOptions: {
         plugins: [
