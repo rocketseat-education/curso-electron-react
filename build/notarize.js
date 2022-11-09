@@ -11,7 +11,9 @@ module.exports = async (context) => {
   }
 
   if (!('APPLE_ID' in process.env && 'APPLE_ID_PASS' in process.env)) {
-    console.warn('skipping notarizing, APPLE_ID and APPLE_ID_PASS env variables must be set.')
+    console.warn(
+      'skipping notarizing, APPLE_ID and APPLE_ID_PASS env variables must be set.',
+    )
     return
   }
 
@@ -26,7 +28,7 @@ module.exports = async (context) => {
       appBundleId: appId,
       appPath: `${appOutDir}/${appName}.app`,
       appleId: process.env.APPLE_ID,
-      appleIdPassword: process.env.APPLEIDPASS
+      appleIdPassword: process.env.APPLEIDPASS,
     })
   } catch (error) {
     console.error(error)

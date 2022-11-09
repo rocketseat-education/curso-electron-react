@@ -2,7 +2,6 @@ import { isSidebarOpenAtom } from './atoms/is-sidebar-open'
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { useEffect } from 'react'
 import { useAtom } from 'jotai'
-import { isSidebarOpenAtom } from './atoms/is-sidebar-open'
 import { Editor } from './components/Editor'
 
 import { Sidebar } from './components/Sidebar'
