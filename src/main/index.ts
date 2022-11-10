@@ -8,7 +8,9 @@ import './shortcuts'
 import './infra/database'
 import './infra/ipc/handlers'
 
-app.dock.setIcon(path.resolve(__dirname, 'icon.png'))
+if (process.platform === 'darwin') {
+  app.dock.setIcon(path.resolve(__dirname, 'icon.png'))
+}
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
