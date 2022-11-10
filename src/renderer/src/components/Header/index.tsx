@@ -1,15 +1,41 @@
 import clsx from 'clsx'
-import { Code, Sticker, Link, Gear, CaretDoubleRight } from 'phosphor-react'
+import { Code, CaretDoubleRight, TrashSimple } from 'phosphor-react'
 import { useAtom } from 'jotai'
 import * as Collapsible from '@radix-ui/react-collapsible'
 import * as Breadcrumbs from './Breadcrumbs'
-
-import { isSidebarOpenAtom } from '@renderer/atoms/is-sidebar-open'
+import { isSidebarOpenAtom } from '../../atoms/is-sidebar-open'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export function Header() {
   const [isSidebarOpen] = useAtom(isSidebarOpenAtom)
+  const queryClient = useQueryClient()
+  const navigate = useNavigate()
 
   const isMacOS = process.platform === 'darwin'
+
+  const { id } = useParams<{ id: string }>()
+
+  const { data } = useQuery(['document', id], async () => {
+    const response = await window.api.getDocument({ id: id! })
+
+    return response.data
+  })
+
+  const { mutateAsync: deleteDocument } = useMutation(
+    async () => {
+      await window.api.deleteDocument({ id: id! })
+    },
+    {
+      onSuccess: () => {
+        queryClient.setQueryData(['documents'], (documents: any[] = []) => {
+          return documents.filter((document) => document.id !== id)
+        })
+
+        navigate('/')
+      },
+    },
+  )
 
   return (
     <div
@@ -41,18 +67,16 @@ export function Header() {
         <Breadcrumbs.Separator />
         <Breadcrumbs.Item>Back-end</Breadcrumbs.Item>
         <Breadcrumbs.Separator />
-        <Breadcrumbs.Item isActive>Arquitetura back-end</Breadcrumbs.Item>
+        <Breadcrumbs.Item isActive>{data?.title}</Breadcrumbs.Item>
       </Breadcrumbs.Root>
 
-      <div className="inline-flex gap-3 region-no-drag">
-        <button className="text-rotion-100 hover:text-rotion-50">
-          <Sticker className="h-5 w-5" weight="bold" />
-        </button>
-        <button className="text-rotion-100 hover:text-rotion-50">
-          <Link className="h-5 w-5" weight="bold" />
-        </button>
-        <button className="text-rotion-100 hover:text-rotion-50">
-          <Gear className="h-5 w-5" weight="bold" />
+      <div className="inline-flex region-no-drag">
+        <button
+          onClick={() => deleteDocument()}
+          className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-rotion-50"
+        >
+          <TrashSimple className="h-4 w-4" />
+          Apagar
         </button>
       </div>
     </div>

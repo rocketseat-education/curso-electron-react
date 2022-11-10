@@ -1,35 +1,22 @@
 import injectProcessEnvPlugin from 'rollup-plugin-inject-process-env'
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
 import react from '@vitejs/plugin-react'
+import tsconfigPathsPlugin from 'vite-tsconfig-paths'
 import { resolve } from 'path'
 
-const shareableAliases = {
-  shared: {
-    '@shared': resolve(__dirname, 'src/shared'),
-  },
-}
+const tsconfigPaths = tsconfigPathsPlugin({
+  projects: [resolve('tsconfig.json')],
+})
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin()],
-
-    resolve: {
-      alias: {
-        ...shareableAliases.shared,
-      },
-    },
+    plugins: [tsconfigPaths, externalizeDepsPlugin()],
 
     publicDir: resolve('resources'),
   },
 
   preload: {
-    plugins: [externalizeDepsPlugin()],
-
-    resolve: {
-      alias: {
-        ...shareableAliases.shared,
-      },
-    },
+    plugins: [tsconfigPaths, externalizeDepsPlugin()],
   },
 
   renderer: {
@@ -38,14 +25,7 @@ export default defineConfig({
       'process.platform': JSON.stringify(process.platform),
     },
 
-    resolve: {
-      alias: {
-        '@renderer': resolve('src/renderer/src'),
-        ...shareableAliases.shared,
-      },
-    },
-
-    plugins: [react()],
+    plugins: [tsconfigPaths, react()],
 
     build: {
       rollupOptions: {

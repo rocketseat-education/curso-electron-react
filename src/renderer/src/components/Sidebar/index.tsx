@@ -5,9 +5,16 @@ import clsx from 'clsx'
 import { CreatePage } from './CreatePage'
 import { Profile } from './Profile'
 import { Search } from './Search'
+import { useQuery } from '@tanstack/react-query'
 
 export function Sidebar() {
   const isMacOS = process.platform === 'darwin'
+
+  const { data } = useQuery(['documents'], async () => {
+    const response = await window.api.getDocuments()
+
+    return response.data
+  })
 
   return (
     <Collapsible.Content className="bg-rotion-800 flex-shrink-0 border-r border-rotion-600 h-screen relative group data-[state=open]:animate-slideIn data-[state=closed]:animate-slideOut overflow-hidden">
@@ -43,30 +50,18 @@ export function Sidebar() {
 
         <Navigation.Root>
           <Navigation.Section>
-            <Navigation.SectionTitle>Favorites</Navigation.SectionTitle>
-            <Navigation.SectionContent>
-              <Navigation.Link>
-                <Code className="h-4 w-4" />
-                Discover
-              </Navigation.Link>
-              <Navigation.Link>
-                <Code className="h-4 w-4" />
-                Ignite
-              </Navigation.Link>
-            </Navigation.SectionContent>
-          </Navigation.Section>
-
-          <Navigation.Section>
             <Navigation.SectionTitle>Workspace</Navigation.SectionTitle>
             <Navigation.SectionContent>
-              <Navigation.Link>
-                <Code className="h-4 w-4" />
-                Discover
-              </Navigation.Link>
-              <Navigation.Link>
-                <Code className="h-4 w-4" />
-                Ignite
-              </Navigation.Link>
+              {data?.map((document) => {
+                return (
+                  <Navigation.Link
+                    to={`/documents/${document.id}`}
+                    key={document.id}
+                  >
+                    {document.title}
+                  </Navigation.Link>
+                )
+              })}
             </Navigation.SectionContent>
           </Navigation.Section>
         </Navigation.Root>
