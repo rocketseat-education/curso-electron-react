@@ -16,11 +16,17 @@ export function Header() {
 
   const { id } = useParams<{ id: string }>()
 
-  const { data } = useQuery(['document', id], async () => {
-    const response = await window.api.getDocument({ id: id! })
+  const { data } = useQuery(
+    ['document', id],
+    async () => {
+      const response = await window.api.getDocument({ id: id! })
 
-    return response.data
-  })
+      return response.data
+    },
+    {
+      enabled: !!id,
+    },
+  )
 
   const { mutateAsync: deleteDocument } = useMutation(
     async () => {

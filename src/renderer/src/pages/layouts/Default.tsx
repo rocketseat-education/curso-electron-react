@@ -6,6 +6,7 @@ import { Sidebar } from '../../components/Sidebar'
 import { isSidebarOpenAtom } from '../../atoms/is-sidebar-open'
 import { Outlet } from 'react-router-dom'
 import { Header } from '../../components/Header'
+import { SearchBar } from '../../components/SearchBar'
 
 export function Default() {
   const [, setIsSidebarOpen] = useAtom(isSidebarOpenAtom)
@@ -22,6 +23,8 @@ export function Default() {
           <Header />
           <Outlet />
         </div>
+
+        <SearchBar />
       </div>
     </Collapsible.Root>
   )

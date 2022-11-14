@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "start": "electron-vite preview",
-    "dev": "electron-vite dev",
+    "dev": "electron-vite dev --watch",
     "build": "electron-vite build",
     "postinstall": "electron-builder install-app-deps",
     "build:win": "npm run build && electron-builder --win --config",
@@ -28,6 +28,7 @@
     "@tiptap/react": "^2.0.0-beta.202",
     "@tiptap/starter-kit": "^2.0.0-beta.202",
     "clsx": "^1.2.1",
+    "cmdk": "^0.1.20",
     "electron-router-dom": "^1.0.4",
     "electron-store": "^8.1.0",
     "jotai": "^1.9.1",

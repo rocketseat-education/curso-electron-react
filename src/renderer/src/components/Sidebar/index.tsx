@@ -1,4 +1,4 @@
-import { CaretDoubleLeft, Code } from 'phosphor-react'
+import { CaretDoubleLeft } from 'phosphor-react'
 import * as Collapsible from '@radix-ui/react-collapsible'
 import * as Navigation from './Navigation'
 import clsx from 'clsx'
