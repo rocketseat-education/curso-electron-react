@@ -23,6 +23,13 @@
   "dependencies": {
     "@electron-toolkit/preload": "^1.0.2",
     "@electron-toolkit/utils": "^1.0.2",
+    "@tailwindcss/typography": "^0.5.8",
+    "@tiptap/extension-document": "^2.0.0-beta.202",
+    "@tiptap/extension-highlight": "^2.0.0-beta.202",
+    "@tiptap/extension-placeholder": "^2.0.0-beta.202",
+    "@tiptap/extension-typography": "^2.0.0-beta.202",
+    "@tiptap/react": "^2.0.0-beta.202",
+    "@tiptap/starter-kit": "^2.0.0-beta.202",
     "clsx": "^1.2.1",
     "cmdk": "^0.1.20",
     "electron-router-dom": "^1.0.5",
